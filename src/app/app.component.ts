@@ -3,10 +3,15 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  template: `
+    <div class="min-h-screen bg-gray-50">
+      <router-outlet></router-outlet>
+    </div>
+  `,
+  styles: []
 })
 export class AppComponent {
-  title = 'bike-sharing';
+  title = 'MetroWheel';
 }

@@ -1,0 +1,18 @@
+.auth-split {
+  @apply flex min-h-screen;
+}
+
+.auth-image-side {
+  @apply hidden lg:block relative w-1/2;
+  background: linear-gradient(rgba(0, 31, 99, 0.45), rgba(0, 21, 80, 0.55)), url('/assets/city-bikes.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-form-side {
+  @apply flex flex-col justify-center w-full lg:w-1/2 px-4 sm:px-6 lg:px-8;
+}
+
+.auth-wide-form {
+  @apply mx-auto w-full max-w-4xl px-4;
+}
