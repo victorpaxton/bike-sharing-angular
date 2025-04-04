@@ -1,0 +1,85 @@
+<div class="map-container">
+  <!-- Top Controls -->
+  <div class="map-controls">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Search location...">
+    </div>
+    <div class="filter-controls">
+      <button 
+        [class.active]="filterType === 'all'"
+        (click)="onFilterChange('all')">
+        All Bikes
+      </button>
+      <button 
+        [class.active]="filterType === 'electric'"
+        (click)="onFilterChange('electric')">
+        Electric
+      </button>
+      <button 
+        [class.active]="filterType === 'manual'"
+        (click)="onFilterChange('manual')">
+        Manual
+      </button>
+    </div>
+  </div>
+
+  <!-- Map View -->
+  <div class="map-view">
+    <!-- Map will be integrated here -->
+    <div class="map-placeholder">
+      <i class="fas fa-map-marked-alt"></i>
+      <p>Map Loading...</p>
+    </div>
+  </div>
+
+  <!-- Bottom Panel -->
+  <div class="bottom-panel" [class.expanded]="selectedBike">
+    <div class="panel-header">
+      <h2>Bike Details</h2>
+      <button class="close-btn" (click)="selectedBike = null">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="panel-content" *ngIf="selectedBike">
+      <div class="bike-info">
+        <div class="bike-header">
+          <h3>{{selectedBike.name}}</h3>
+          <span class="bike-type" [class.electric]="selectedBike.type === 'electric'">
+            {{selectedBike.type}}
+          </span>
+        </div>
+        
+        <div class="bike-details">
+          <div class="detail-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{selectedBike.location.address}}</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-dollar-sign"></i>
+            <span>{{selectedBike.pricePerHour}}/hour</span>
+          </div>
+          <div class="detail-item" *ngIf="selectedBike.type === 'electric'">
+            <i class="fas fa-battery-three-quarters"></i>
+            <span>{{selectedBike.batteryLevel}}% battery</span>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-tools"></i>
+            <span>Last maintenance: {{selectedBike.lastMaintenanceDate | date}}</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="primary-btn" [routerLink]="['/citizen/reservation', selectedBike.id]">
+            Reserve Now
+          </button>
+          <button class="secondary-btn">
+            <i class="fas fa-directions"></i>
+            Get Directions
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

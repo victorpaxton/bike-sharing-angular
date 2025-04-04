@@ -1,0 +1,186 @@
+<div class="min-h-screen bg-gray-50 p-8">
+  <!-- Welcome Section -->
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h1 class="text-2xl font-medium text-gray-900">Welcome back,</h1>
+      <p class="text-gray-600">Here's what's happening with your account</p>
+    </div>
+    <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md">
+      Find a Bike
+    </button>
+  </div>
+
+  <!-- Active Rental Card -->
+  <div class="bg-white rounded-lg shadow-sm border-l-4 border-green-500 p-6 mb-8" *ngIf="activeRentals.length > 0">
+    <div class="flex items-start justify-between">
+      <div class="flex-grow">
+        <div class="flex items-center text-green-600 mb-4">
+          <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+          <span class="font-medium">Active Rental</span>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-y-4 max-w-xl">
+          <div>
+            <div class="text-sm text-gray-500">Bike ID</div>
+            <div class="font-medium">BIKE-123</div>
+          </div>
+          <div>
+            <div class="text-sm text-gray-500">Station</div>
+            <div class="font-medium">Central Park South</div>
+          </div>
+          <div>
+            <div class="text-sm text-gray-500">Started</div>
+            <div class="font-medium">10:00:00 AM</div>
+          </div>
+          <div>
+            <div class="text-sm text-gray-500">Duration</div>
+            <div class="font-medium">00:37:15</div>
+          </div>
+          <div>
+            <div class="text-sm text-gray-500">Current Cost</div>
+            <div class="font-medium">$0.00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex space-x-3">
+        <button class="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+          End Rental
+        </button>
+        <button class="px-6 py-2 border border-gray-200 text-gray-700 rounded-md hover:bg-gray-50">
+          Report Issue
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Account Summary -->
+  <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+    <h2 class="text-lg font-medium text-gray-900 mb-6">Account Summary</h2>
+    <div class="grid grid-cols-4 gap-8">
+      <div>
+        <div class="text-sm text-gray-500">Balance</div>
+        <div class="mt-1">
+          <span class="text-xl font-medium">$</span>
+          <span class="text-2xl font-medium">24</span>
+        </div>
+      </div>
+      <div>
+        <div class="text-sm text-gray-500">Total Rides</div>
+        <div class="text-2xl font-medium mt-1">24</div>
+      </div>
+      <div>
+        <div class="text-sm text-gray-500">Distance</div>
+        <div class="text-2xl font-medium mt-1">156 km</div>
+      </div>
+      <div>
+        <div class="text-sm text-gray-500">Points</div>
+        <div class="text-2xl font-medium mt-1">1,250</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Section -->
+  <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-8">
+    <div class="h-[400px] bg-[#E5ECEE] relative">
+      <!-- Map will be integrated here -->
+      <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+        <i class="fas fa-map-marked-alt text-4xl"></i>
+      </div>
+      <!-- Zoom Controls -->
+      <div class="absolute top-4 left-4 bg-white rounded shadow">
+        <button class="w-8 h-8 flex items-center justify-center hover:bg-gray-50 border-b border-gray-200 text-gray-600">+</button>
+        <button class="w-8 h-8 flex items-center justify-center hover:bg-gray-50 text-gray-600">−</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subscription Info -->
+  <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+    <div class="flex justify-between items-start">
+      <div>
+        <h3 class="text-lg font-medium text-gray-900">Premium Monthly Plan</h3>
+        <p class="text-gray-500 text-sm mt-1">Valid until: April 30, 2025</p>
+        <p class="text-gray-500 text-sm">Unlimited 60-minute rides</p>
+      </div>
+      <button class="text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-md">
+        Manage Subscription
+      </button>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="mb-8">
+    <h2 class="text-lg font-medium text-gray-900 mb-6">Quick Actions</h2>
+    <div class="grid grid-cols-4 gap-6">
+      <a href="#" class="block text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-lg mb-3">
+          <i class="fas fa-bicycle text-xl"></i>
+        </div>
+        <h3 class="font-medium text-gray-900 mb-1">Find a Bike</h3>
+        <p class="text-sm text-gray-500">View available bikes near you</p>
+      </a>
+      
+      <a href="#" class="block text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-purple-100 text-purple-600 rounded-lg mb-3">
+          <i class="fas fa-history text-xl"></i>
+        </div>
+        <h3 class="font-medium text-gray-900 mb-1">Recent Rides</h3>
+        <p class="text-sm text-gray-500">View your ride history</p>
+      </a>
+      
+      <a href="#" class="block text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-yellow-100 text-yellow-600 rounded-lg mb-3">
+          <i class="fas fa-exclamation-triangle text-xl"></i>
+        </div>
+        <h3 class="font-medium text-gray-900 mb-1">Report Issue</h3>
+        <p class="text-sm text-gray-500">Report a problem with a bike</p>
+      </a>
+      
+      <a href="#" class="block text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-green-100 text-green-600 rounded-lg mb-3">
+          <i class="fas fa-credit-card text-xl"></i>
+        </div>
+        <h3 class="font-medium text-gray-900 mb-1">Billing</h3>
+        <p class="text-sm text-gray-500">Manage your subscription</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Recent Rides -->
+  <div>
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-lg font-medium text-gray-900">Recent Rides</h2>
+      <a href="#" class="text-blue-600 hover:text-blue-700 text-sm">See All</a>
+    </div>
+    
+    <div class="bg-white rounded-lg shadow-sm divide-y">
+      <div class="p-4 flex items-center justify-between" *ngFor="let ride of recentRides">
+        <div class="flex items-center space-x-6">
+          <div class="flex flex-col items-center justify-center w-16">
+            <i class="fas fa-bicycle text-gray-400 mb-1"></i>
+            <span class="text-sm text-gray-500">{{ride.distance}} km</span>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900">{{ride.startLocation.address}} to {{ride.endLocation?.address}}</h4>
+            <p class="text-sm text-gray-500">{{ride.startTime | date:'MMM dd, yyyy'}}</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-8">
+          <div class="text-right">
+            <div class="text-sm text-gray-500">Duration</div>
+            <div class="font-medium">{{ride.duration}} min</div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500">Cost</div>
+            <div class="font-medium">${{ride.totalCost || '0.00'}}</div>
+          </div>
+          <a href="#" class="text-blue-600 hover:text-blue-700 flex items-center space-x-2">
+            <span class="text-sm">View Route</span>
+            <i class="fas fa-chevron-right text-sm"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

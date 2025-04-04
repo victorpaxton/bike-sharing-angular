@@ -45,6 +45,8 @@ export class AuthService {
           if (credentials.rememberMe) {
             localStorage.setItem('currentUser', JSON.stringify(user));
           }
+          // Store a token for auth guard
+          localStorage.setItem('token', 'mock-jwt-token');
           this.currentUserSubject.next(user);
         })
       );

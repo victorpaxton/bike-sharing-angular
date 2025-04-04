@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../services/auth.service';
+import { AppLogoComponent } from '../../../shared/components/app-logo/app-logo.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, AppLogoComponent],
   template: `
     <div class="auth-split">
       <!-- Left side with background image -->
@@ -14,7 +16,7 @@ import { CommonModule } from '@angular/common';
         <div class="absolute inset-0 flex flex-col items-center justify-center p-12 text-white">
           <div class="text-center">
             <h1 class="text-5xl font-bold mb-4">Your Urban Mobility Partner</h1>
-            <p class="text-xl mb-8">Start your sustainable journey with MetroWheel</p>
+            <p class="text-xl mb-8">Start your sustainable journey with BikeWheel</p>
           </div>
           <div class="flex space-x-12 text-center">
             <div>
@@ -37,10 +39,7 @@ import { CommonModule } from '@angular/common';
       <div class="auth-form-side">
         <div class="w-full max-w-md mx-auto">
           <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="flex items-center justify-center space-x-3 mb-6">
-              <img class="h-15 w-auto" src="assets/logo.svg" alt="MetroWheel" />
-              <span class="text-2xl font-bold text-blue-600">MetroWheel</span>
-            </div>
+            <app-logo size="medium"></app-logo>
             <p class="mt-2 text-center text-sm text-gray-600">
               Don't have an account?
               <a routerLink="/auth/register" class="font-medium text-blue-600 hover:text-blue-500">
@@ -148,7 +147,8 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -183,12 +183,11 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.isLoading = true;
       try {
-        // TODO: Implement authentication logic
-        console.log(this.loginForm.value);
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-        this.router.navigate(['/dashboard']);
+        await this.authService.login(this.loginForm.value).toPromise();
+        this.router.navigate(['/citizen/dashboard']);
       } catch (error) {
         console.error('Login failed:', error);
+        // TODO: Show error message to user
       } finally {
         this.isLoading = false;
       }

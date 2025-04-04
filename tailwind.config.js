@@ -4,12 +4,11 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    fontFamily: {
-      sans: ['Raleway', 'system-ui', 'sans-serif'],
-      display: ['Raleway', 'system-ui', 'sans-serif'],
-      body: ['Raleway', 'system-ui', 'sans-serif'],
+    extend: {
+      fontFamily: {
+        sans: ['Roboto', 'sans-serif'],
+      },
     },
-    extend: {},
   },
   plugins: [],
 }

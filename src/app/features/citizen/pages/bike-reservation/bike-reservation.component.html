@@ -1,0 +1,76 @@
+<div class="reservation-container" *ngIf="bike">
+  <!-- Station Details -->
+  <div class="station-details">
+    <div class="back-button" (click)="goBackToMap()">
+      <i class="fas fa-arrow-left"></i>
+      Back to Map
+    </div>
+    <h1>{{bike.name}}</h1>
+    <div class="location">
+      <i class="fas fa-map-marker-alt"></i>
+      <span>{{bike.location.address}}</span>
+    </div>
+  </div>
+
+  <!-- Bike Details -->
+  <div class="bike-details">
+    <div class="bike-image">
+      <img [src]="'assets/images/bike-' + bike.type + '.png'" [alt]="bike.name">
+      <div class="bike-type" [class.electric]="bike.type === 'electric'">
+        {{bike.type}}
+      </div>
+    </div>
+
+    <div class="bike-info">
+      <div class="info-item">
+        <i class="fas fa-bolt" *ngIf="bike.type === 'electric'"></i>
+        <i class="fas fa-bicycle" *ngIf="bike.type === 'manual'"></i>
+        <span>{{bike.type === 'electric' ? 'Electric Bike' : 'Manual Bike'}}</span>
+      </div>
+      <div class="info-item" *ngIf="bike.type === 'electric'">
+        <i class="fas fa-battery-three-quarters"></i>
+        <span>{{bike.batteryLevel}}% battery</span>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-tools"></i>
+        <span>Last maintenance: {{bike.lastMaintenanceDate | date}}</span>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-dollar-sign"></i>
+        <span>{{bike.pricePerHour}}/hour</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reservation Form -->
+  <div class="reservation-form">
+    <h2>Select Duration</h2>
+    <div class="duration-selector">
+      <button 
+        *ngFor="let duration of [1, 2, 3, 4, 5]"
+        [class.active]="selectedDuration === duration"
+        (click)="onDurationChange(duration)">
+        {{duration}} {{duration === 1 ? 'hour' : 'hours'}}
+      </button>
+    </div>
+
+    <div class="cost-summary">
+      <div class="cost-item">
+        <span>Rate per hour</span>
+        <span>${{bike.pricePerHour}}</span>
+      </div>
+      <div class="cost-item">
+        <span>Duration</span>
+        <span>{{selectedDuration}} {{selectedDuration === 1 ? 'hour' : 'hours'}}</span>
+      </div>
+      <div class="cost-item total">
+        <span>Total Cost</span>
+        <span>${{totalCost}}</span>
+      </div>
+    </div>
+
+    <button class="confirm-btn" (click)="confirmReservation()">
+      Confirm Reservation
+    </button>
+  </div>
+</div> 

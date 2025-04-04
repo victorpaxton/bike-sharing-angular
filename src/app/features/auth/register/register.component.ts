@@ -4,18 +4,16 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { RegistrationData } from '../models/auth.models';
+import { AppLogoComponent } from '../../../shared/components/app-logo/app-logo.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, AppLogoComponent],
   template: `
     <div class="auth-wide-form min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6">
       <div class="sm:mx-auto sm:w-full">
-        <div class="flex items-center justify-center space-x-3 mb-6">
-          <img class="h-15 w-auto" src="assets/logo.svg" alt="MetroWheel" />
-          <span class="text-2xl font-bold text-blue-600">MetroWheel</span>
-        </div>
+        <app-logo size="medium"></app-logo>
         <h2 class="mt-6 mb-8 text-center text-3xl font-bold text-gray-900">
           Create your account
         </h2>
@@ -374,7 +372,7 @@ export class RegisterComponent implements OnInit {
         };
 
         await this.authService.register(registrationData).toPromise();
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/citizen/dashboard']);
       } catch (error) {
         console.error('Registration failed:', error);
         // TODO: Show error message to user
